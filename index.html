@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MEISTER-WERK - Ihr zuverlässiger Partner für Sanitär, Heizung und Rohrreinigung. 24/7 Notdienst verfügbar.">
+    <title>MEISTER-WERK | Handwerk. Präzision. Verlass.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Emergency Button (Fixed) -->
+    <a href="tel:0800123456" class="emergency-btn" aria-label="24/7 Notdienst anrufen">
+        <i class="fas fa-phone-alt"></i>
+        <span>Notfall? 0800-123-456</span>
+    </a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-text">MEISTER</span>
+                    <span class="logo-separator">|</span>
+                    <span class="logo-text">WERK</span>
+                </div>
+                <nav class="nav">
+                    <a href="#dienste" class="nav-link">Dienste</a>
+                    <a href="#projekte" class="nav-link">Projekte</a>
+                    <a href="#bewertungen" class="nav-link">Bewertungen</a>
+                    <a href="#planer" class="nav-link">Projekt planen</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Handwerk. Präzision. Verlass.</h1>
+            <p class="hero-subtitle">Ihr Experte für Sanitär, Heizung und Rohrreinigung in Berlin</p>
+            <div class="hero-cta">
+                <a href="tel:0800123456" class="btn btn-primary">
+                    <i class="fas fa-phone-alt"></i>
+                    Notdienst rufen
+                </a>
+                <a href="#planer" class="btn btn-secondary">
+                    <i class="fas fa-clipboard-list"></i>
+                    Projekt planen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area Checker -->
+    <section class="area-checker" id="bereich">
+        <div class="container">
+            <h2 class="section-title">Sind wir in Ihrer Nähe?</h2>
+            <p class="section-subtitle">Prüfen Sie, ob wir in Ihrem Gebiet tätig sind</p>
+            <div class="checker-form">
+                <div class="input-group">
+                    <input type="text" id="zipInput" class="zip-input" placeholder="PLZ eingeben" maxlength="5">
+                    <button type="button" id="checkBtn" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                        Prüfen
+                    </button>
+                </div>
+                <div class="checker-result" id="checkerResult"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services" id="dienste">
+        <div class="container">
+            <h2 class="section-title">Unsere Dienstleistungen</h2>
+            <p class="section-subtitle">Professionelle Lösungen für Ihr Zuhause und Gewerbe</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <h3 class="service-title">Sanitär</h3>
+                    <p class="service-desc">Installation und Reparatur von Wasserleitungen, Armaturen, Badezimmern und sanitären Anlagen.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="service-title">Heizung</h3>
+                    <p class="service-desc">Moderne Heizsysteme, Wartung, Reparatur und energieeffiziente Lösungen für warme Räume.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <h3 class="service-title">Rohrreinigung</h3>
+                    <p class="service-desc">Schnelle und gründliche Rohrreinigung bei Verstopfungen - 24/7 Notdienst verfügbar.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="service-title">Wartung</h3>
+                    <p class="service-desc">Regelmäßige Inspektion und Wartung Ihrer Anlagen für langfristige Zuverlässigkeit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery (Before/After) -->
+    <section class="gallery" id="projekte">
+        <div class="container">
+            <h2 class="section-title">Unsere Projekte</h2>
+            <p class="section-subtitle">Qualität, die man sehen kann</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="before-after">
+                        <div class="gallery-image before">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="Badezimmer vorher">
+                            <span class="label">Vorher</span>
+                        </div>
+                        <div class="gallery-image after">
+                            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80" alt="Badezimmer nachher">
+                            <span class="label">Nachher</span>
+                        </div>
+                    </div>
+                    <p class="gallery-caption">Komplette Badsanierung in Mitte</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="before-after">
+                        <div class="gallery-image before">
+                            <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&q=80" alt="Heizung vorher">
+                            <span class="label">Vorher</span>
+                        </div>
+                        <div class="gallery-image after">
+                            <img src="https://images.unsplash.com/photo-1504203328503-cf4e38e336de?w=600&q=80" alt="Heizung nachher">
+                            <span class="label">Nachher</span>
+                        </div>
+                    </div>
+                    <p class="gallery-caption">Moderne Heizungsanlage in Prenzlauer Berg</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="before-after">
+                        <div class="gallery-image before">
+                            <img src="https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&q=80" alt="Küche vorher">
+                            <span class="label">Vorher</span>
+                        </div>
+                        <div class="gallery-image after">
+                            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&q=80" alt="Küche nachher">
+                            <span class="label">Nachher</span>
+                        </div>
+                    </div>
+                    <p class="gallery-caption">Küchensanierung in Kreuzberg</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews Widget -->
+    <section class="reviews" id="bewertungen">
+        <div class="container">
+            <h2 class="section-title">Was unsere Kunden sagen</h2>
+            <div class="reviews-widget">
+                <div class="reviews-header">
+                    <div class="reviews-logo">
+                        <i class="fab fa-google"></i>
+                        <span>Google Bewertungen</span>
+                    </div>
+                    <div class="reviews-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">5.0 von 5</span>
+                    </div>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">MK</div>
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Michael Klein</h4>
+                                    <p class="review-date">vor 2 Tagen</p>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">"Schneller und professioneller Service! Das Team hat unsere Heizung innerhalb weniger Stunden repariert. Absolut empfehlenswert!"</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">SM</div>
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Sandra Müller</h4>
+                                    <p class="review-date">vor 5 Tagen</p>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">"Faire Preise und exzellente Arbeit. Die Badsanierung wurde termingerecht und sauber durchgeführt. Vielen Dank!"</p>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">TB</div>
+                                <div class="reviewer-details">
+                                    <h4 class="reviewer-name">Thomas Becker</h4>
+                                    <p class="review-date">vor 1 Woche</p>
+                                </div>
+                            </div>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">"Notdienst am Wochenende - innerhalb von 30 Minuten war jemand da. Kompetent, freundlich und zuverlässig. Top!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Planner Wizard -->
+    <section class="planner" id="planer">
+        <div class="container">
+            <h2 class="section-title">Projekt planen</h2>
+            <p class="section-subtitle">In drei einfachen Schritten zu Ihrem Angebot</p>
+            
+            <div class="wizard">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Art</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Dringlichkeit</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Kontakt</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Service Type -->
+                <div class="wizard-step active" data-step="1">
+                    <h3 class="wizard-title">Was können wir für Sie tun?</h3>
+                    <div class="wizard-cards">
+                        <div class="wizard-card" data-value="reparatur">
+                            <i class="fas fa-tools"></i>
+                            <h4>Reparatur</h4>
+                            <p>Etwas ist kaputt</p>
+                        </div>
+                        <div class="wizard-card" data-value="neuinstallation">
+                            <i class="fas fa-hammer"></i>
+                            <h4>Neuinstallation</h4>
+                            <p>Neues System gewünscht</p>
+                        </div>
+                        <div class="wizard-card" data-value="wartung">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h4>Wartung</h4>
+                            <p>Regelmäßige Pflege</p>
+                        </div>
+                        <div class="wizard-card" data-value="notfall">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Notfall</h4>
+                            <p>Sofortige Hilfe nötig</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Urgency -->
+                <div class="wizard-step" data-step="2">
+                    <h3 class="wizard-title">Wie eilig ist es?</h3>
+                    <div class="wizard-cards">
+                        <div class="wizard-card" data-value="sofort">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Sofort</h4>
+                            <p>Heute noch</p>
+                        </div>
+                        <div class="wizard-card" data-value="woche">
+                            <i class="fas fa-calendar-week"></i>
+                            <h4>Diese Woche</h4>
+                            <p>Innerhalb 7 Tagen</p>
+                        </div>
+                        <div class="wizard-card" data-value="zeit">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h4>Hat Zeit</h4>
+                            <p>Planung möglich</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Contact Info -->
+                <div class="wizard-step" data-step="3">
+                    <h3 class="wizard-title">Wohin sollen wir kommen?</h3>
+                    <form class="wizard-form" id="wizardForm">
+                        <div class="form-group">
+                            <label for="name">Ihr Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefonnummer</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresse</label>
+                            <input type="text" id="address" name="address" placeholder="Straße, Hausnummer" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">PLZ / Ort</label>
+                            <input type="text" id="zip" name="zip" placeholder="10115 Berlin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Ihre Nachricht (optional)</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Navigation -->
+                <div class="wizard-nav">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
+                        <i class="fas fa-arrow-left"></i>
+                        Zurück
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" disabled>
+                        Weiter
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>MEISTER | WERK</h4>
+                    <p>Ihr zuverlässiger Partner für Sanitär, Heizung und Rohrreinigung in Berlin.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p><i class="fas fa-phone"></i> 0800-123-456</p>
+                    <p><i class="fas fa-envelope"></i> info@meisterwerk.de</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Berliner Str. 123, 10115 Berlin</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Öffnungszeiten</h4>
+                    <p>Mo - Fr: 08:00 - 18:00 Uhr</p>
+                    <p>Sa: 09:00 - 14:00 Uhr</p>
+                    <p><strong>24/7 Notdienst</strong></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MEISTER-WERK. Alle Rechte vorbehalten.</p>
+                <div class="footer-links">
+                    <a href="#impressum">Impressum</a>
+                    <a href="#datenschutz">Datenschutz</a>
+                    <a href="#agb">AGB</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

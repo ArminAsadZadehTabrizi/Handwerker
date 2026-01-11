@@ -6,13 +6,13 @@ let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -48,18 +48,18 @@ zipInput.addEventListener('keypress', (e) => {
 
 function checkServiceArea() {
     const zip = zipInput.value.trim();
-    
+
     // Validation
     if (zip === '') {
         showResult('Bitte geben Sie eine PLZ ein.', false);
         return;
     }
-    
+
     if (zip.length !== 5 || isNaN(zip)) {
         showResult('Bitte geben Sie eine gültige 5-stellige PLZ ein.', false);
         return;
     }
-    
+
     // Check if zip code is valid
     if (validZipCodes.includes(zip)) {
         showResult('<i class="fas fa-check-circle"></i> Wir kommen zu Ihnen! Wir sind in Ihrer Nähe tätig.', true);
@@ -89,25 +89,33 @@ const wizardForm = document.getElementById('wizardForm');
 
 // Card selection logic
 document.querySelectorAll('.wizard-card').forEach(card => {
-    card.addEventListener('click', function() {
+    card.addEventListener('click', function () {
         const step = this.closest('.wizard-step').dataset.step;
-        
+
         // Remove selected class from siblings
         this.parentElement.querySelectorAll('.wizard-card').forEach(c => {
             c.classList.remove('selected');
         });
-        
+
         // Add selected class to clicked card
         this.classList.add('selected');
-        
+
         // Store selection
         const value = this.dataset.value;
         if (step === '1') {
             wizardData.serviceType = value;
+
+            // Auto-advance on Step 1 after short delay
+            setTimeout(() => {
+                if (currentStep === 1) {
+                    currentStep++;
+                    updateWizard();
+                }
+            }, 400);
         } else if (step === '2') {
             wizardData.urgency = value;
         }
-        
+
         // Enable next button
         nextBtn.disabled = false;
     });
@@ -141,32 +149,32 @@ function updateWizard() {
             step.classList.add('active');
         }
     });
-    
+
     // Update progress bar
     document.querySelectorAll('.progress-step').forEach(step => {
         const stepNum = parseInt(step.dataset.step);
         step.classList.remove('active', 'completed');
-        
+
         if (stepNum === currentStep) {
             step.classList.add('active');
         } else if (stepNum < currentStep) {
             step.classList.add('completed');
         }
     });
-    
+
     // Update navigation buttons
     if (currentStep === 1) {
         prevBtn.style.display = 'none';
     } else {
         prevBtn.style.display = 'flex';
     }
-    
+
     if (currentStep === 3) {
         nextBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Absenden';
         nextBtn.disabled = false; // Enable submit button
     } else {
         nextBtn.innerHTML = 'Weiter <i class="fas fa-arrow-right"></i>';
-        
+
         // Check if selection made for current step
         const hasSelection = document.querySelector(`.wizard-step[data-step="${currentStep}"] .wizard-card.selected`);
         nextBtn.disabled = !hasSelection;
@@ -179,7 +187,7 @@ function submitWizard() {
         wizardForm.reportValidity();
         return;
     }
-    
+
     // Collect form data
     const formData = new FormData(wizardForm);
     const data = {
@@ -189,15 +197,26 @@ function submitWizard() {
         phone: formData.get('phone'),
         address: formData.get('address'),
         zip: formData.get('zip'),
+        date: formData.get('date'),
+        time: formData.get('time'),
         message: formData.get('message')
     };
-    
+
     // Log data (in production, send to backend)
     console.log('Wizard Data:', data);
-    
+
+    // Build success message with optional date/time
+    let successMsg = `Vielen Dank, ${data.name}!\n\nWir haben Ihre Anfrage erhalten und melden uns in Kürze.\n\nService: ${data.serviceType}\nDringlichkeit: ${data.urgency}`;
+    if (data.date) {
+        successMsg += `\nWunschtermin: ${data.date}`;
+    }
+    if (data.time) {
+        successMsg += `\nUhrzeit: ${data.time}`;
+    }
+
     // Show success message
-    alert(`Vielen Dank, ${data.name}!\n\nWir haben Ihre Anfrage erhalten und melden uns in Kürze.\n\nService: ${data.serviceType}\nDringlichkeit: ${data.urgency}`);
-    
+    alert(successMsg);
+
     // Reset wizard
     resetWizard();
 }
@@ -208,38 +227,83 @@ function resetWizard() {
         serviceType: null,
         urgency: null
     };
-    
+
     // Clear selections
     document.querySelectorAll('.wizard-card').forEach(card => {
         card.classList.remove('selected');
     });
-    
+
     // Clear form
     wizardForm.reset();
-    
+
     // Update display
     updateWizard();
 }
 
 // ========================================
+// EMERGENCY BUTTON FOOTER COLLISION DETECTION
+// ========================================
+const emergencyBtn = document.querySelector('.emergency-btn');
+const footerBottom = document.querySelector('.footer-bottom');
+
+if (emergencyBtn && footerBottom) {
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Footer is visible, dock the button
+                emergencyBtn.classList.add('docked');
+            } else {
+                // Footer not visible, keep button fixed
+                emergencyBtn.classList.remove('docked');
+            }
+        });
+    }, {
+        threshold: 0,
+        rootMargin: '0px 0px -80px 0px' // Trigger slightly before footer appears
+    });
+
+    footerObserver.observe(footerBottom);
+}
+
+// ========================================
+// FAQ ACCORDION TOGGLE
+// ========================================
+document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+        const item = header.closest('.accordion-item');
+        const isActive = item.classList.contains('active');
+
+        // Close all accordion items
+        document.querySelectorAll('.accordion-item').forEach(accordionItem => {
+            accordionItem.classList.remove('active');
+        });
+
+        // Toggle current item (if it wasn't already active)
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// ========================================
 // SMOOTH SCROLLING FOR ANCHOR LINKS
 // ========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        
+
         // Skip if href is just "#"
         if (href === '#' || href.startsWith('#impressum') || href.startsWith('#datenschutz') || href.startsWith('#agb')) {
             return;
         }
-        
+
         e.preventDefault();
-        
+
         const target = document.querySelector(href);
         if (target) {
             const headerHeight = header.offsetHeight;
             const targetPosition = target.offsetTop - headerHeight - 20;
-            
+
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
@@ -254,13 +318,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize wizard
     updateWizard();
-    
+
     // Add fade-in animation to sections on scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -269,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, observerOptions);
-    
+
     // Observe all sections
     document.querySelectorAll('section').forEach(section => {
         section.style.opacity = '0';

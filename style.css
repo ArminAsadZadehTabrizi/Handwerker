@@ -205,6 +205,63 @@ button {
 }
 
 /* ========================================
+   WHATSAPP BUTTON (FIXED)
+   ======================================== */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    background-color: #25D366;
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    animation: pulse 2s infinite;
+    transition: bottom 0.3s ease;
+    /* Smooth docking transition */
+}
+
+.whatsapp-btn:hover {
+    background-color: #20BA5A;
+    transform: scale(1.05);
+}
+
+/* Docked state when reaching footer */
+.whatsapp-btn.docked {
+    bottom: 120px;
+    /* Push up when footer is visible */
+}
+
+/* Mobile WhatsApp Button */
+@media (max-width: 768px) {
+    .whatsapp-btn {
+        bottom: 1rem;
+        left: 1rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .whatsapp-btn.docked {
+        bottom: 100px;
+        /* Adjust for mobile footer */
+    }
+
+    .whatsapp-btn span {
+        display: none;
+    }
+
+    .whatsapp-btn i {
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================================
    HEADER
    ======================================== */
 .header {
@@ -541,6 +598,45 @@ button {
     color: var(--text);
 }
 
+/* Gallery Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.filter-btn.active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+}
+
+/* Gallery CTA */
+.gallery-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+}
+
 /* Mobile Gallery */
 @media (max-width: 768px) {
     .gallery-grid {
@@ -549,6 +645,15 @@ button {
 
     .before-after {
         grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+        gap: var(--spacing-xs);
+    }
+
+    .filter-btn {
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
     }
 }
 

@@ -244,20 +244,23 @@ function resetWizard() {
 }
 
 // ========================================
-// EMERGENCY BUTTON FOOTER COLLISION DETECTION
+// FLOATING BUTTONS FOOTER COLLISION DETECTION
 // ========================================
 const emergencyBtn = document.querySelector('.emergency-btn');
+const whatsappBtn = document.querySelector('.whatsapp-btn');
 const footerBottom = document.querySelector('.footer-bottom');
 
-if (emergencyBtn && footerBottom) {
+if (footerBottom) {
     const footerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Footer is visible, dock the button
-                emergencyBtn.classList.add('docked');
+                // Footer is visible, dock the buttons
+                if (emergencyBtn) emergencyBtn.classList.add('docked');
+                if (whatsappBtn) whatsappBtn.classList.add('docked');
             } else {
-                // Footer not visible, keep button fixed
-                emergencyBtn.classList.remove('docked');
+                // Footer not visible, keep buttons fixed
+                if (emergencyBtn) emergencyBtn.classList.remove('docked');
+                if (whatsappBtn) whatsappBtn.classList.remove('docked');
             }
         });
     }, {
@@ -314,6 +317,37 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ========================================
+// GALLERY FILTER FUNCTIONALITY
+// ========================================
+const filterButtons = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+if (filterButtons.length > 0 && galleryItems.length > 0) {
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const filterValue = this.dataset.filter;
+
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // Filter gallery items
+            galleryItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+
+                if (filterValue === 'all' || itemCategory === filterValue) {
+                    item.style.display = 'block';
+                    // Add fade-in animation
+                    item.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+}
 
 // ========================================
 // INITIALIZATION

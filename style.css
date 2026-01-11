@@ -236,6 +236,11 @@ button {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary);
+    transition: var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.8;
 }
 
 .logo-separator {
@@ -932,6 +937,7 @@ button {
     gap: var(--spacing-lg);
     align-items: center;
     justify-items: center;
+    justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -945,6 +951,15 @@ button {
     transition: var(--transition);
     text-align: center;
     padding: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+
+.partner-logo i {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
 }
 
 .partner-logo:hover {
@@ -1195,5 +1210,287 @@ button {
         flex-direction: column;
         gap: var(--spacing-sm);
         text-align: center;
+    }
+}
+
+/* ========================================
+   PAGE HERO (Smaller than main hero)
+   ======================================== */
+.page-hero {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.page-hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.75);
+}
+
+.page-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    max-width: 800px;
+    padding: 0 var(--spacing-sm);
+}
+
+.page-hero .hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-sm);
+}
+
+.page-hero .hero-subtitle {
+    font-size: 1.125rem;
+    opacity: 0.95;
+}
+
+/* Mobile Page Hero */
+@media (max-width: 768px) {
+    .page-hero {
+        height: 300px;
+    }
+
+    .page-hero .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .page-hero .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   STORY SECTION
+   ======================================== */
+.story-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--light);
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.story-text p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.story-image {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobile Story Section */
+@media (max-width: 768px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+/* ========================================
+   TEAM SECTION
+   ======================================== */
+.team-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--white);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.team-card {
+    background-color: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.team-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.team-card:hover .team-image img {
+    transform: scale(1.05);
+}
+
+.team-info {
+    padding: var(--spacing-md);
+}
+
+.team-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.team-role {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+.team-description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+/* Mobile Team Section */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-image {
+        height: 250px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================================
+   LEGAL PAGES
+   ======================================== */
+.legal-page {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--light);
+    min-height: 60vh;
+}
+
+.legal-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.legal-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+.legal-content h2 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+.legal-content h2:first-child {
+    margin-top: 0;
+}
+
+.legal-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+}
+
+.legal-content p {
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.legal-content ul {
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.legal-content li {
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.legal-content a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.legal-content a:hover {
+    color: #EA580C;
+}
+
+/* Mobile Legal Pages */
+@media (max-width: 768px) {
+    .legal-title {
+        font-size: 2rem;
+    }
+
+    .legal-content {
+        padding: var(--spacing-md);
+    }
+
+    .legal-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .legal-content h3 {
+        font-size: 1.125rem;
     }
 }

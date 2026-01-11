@@ -165,8 +165,11 @@ function updateWizard() {
     // Update navigation buttons
     if (currentStep === 1) {
         prevBtn.style.display = 'none';
+        // Hide next button on Step 1 since auto-advance is enabled
+        nextBtn.style.display = 'none';
     } else {
         prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
     }
 
     if (currentStep === 3) {

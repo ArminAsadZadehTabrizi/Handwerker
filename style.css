@@ -797,6 +797,8 @@ button {
 .planner {
     padding: var(--spacing-xl) 0;
     background-color: var(--light);
+    min-height: 80vh;
+    /* Push footer down on large screens */
 }
 
 .wizard {

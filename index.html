@@ -54,7 +54,7 @@
                     <a href="index.html#faq" class="nav-link">FAQ</a>
                     <a href="index.html#kontakt" class="nav-link">Kontakt</a>
                     <a href="ueber-uns.html" class="nav-link">Über uns</a>
-                    <a href="index.html#planer" class="nav-link">Projekt planen</a>
+                    <a href="planer.html" class="nav-link">Projekt planen</a>
                 </nav>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     <i class="fas fa-phone-alt"></i>
                     Notdienst rufen
                 </a>
-                <a href="#planer" class="btn btn-secondary">
+                <a href="planer.html" class="btn btn-secondary">
                     <i class="fas fa-clipboard-list"></i>
                     Projekt planen
                 </a>
@@ -93,6 +93,13 @@
                     </button>
                 </div>
                 <div class="checker-result" id="checkerResult"></div>
+            </div>
+            <!-- Secondary CTA for Conversion -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="planer.html" class="btn btn-primary">
+                    <i class="fas fa-clipboard-list"></i>
+                    Direkt Projekt anfragen
+                </a>
             </div>
         </div>
     </section>
@@ -285,127 +292,6 @@
         </div>
     </section>
 
-    <!-- Project Planner Wizard -->
-    <section class="planner" id="planer">
-        <div class="container">
-            <h2 class="section-title">Projekt planen</h2>
-            <p class="section-subtitle">In drei einfachen Schritten zu Ihrem Angebot</p>
-
-            <div class="wizard">
-                <!-- Progress Bar -->
-                <div class="progress-bar">
-                    <div class="progress-step active" data-step="1">
-                        <span class="step-number">1</span>
-                        <span class="step-label">Art</span>
-                    </div>
-                    <div class="progress-step" data-step="2">
-                        <span class="step-number">2</span>
-                        <span class="step-label">Dringlichkeit</span>
-                    </div>
-                    <div class="progress-step" data-step="3">
-                        <span class="step-number">3</span>
-                        <span class="step-label">Kontakt</span>
-                    </div>
-                </div>
-
-                <!-- Step 1: Service Type -->
-                <div class="wizard-step active" data-step="1">
-                    <h3 class="wizard-title">Was können wir für Sie tun?</h3>
-                    <div class="wizard-cards">
-                        <div class="wizard-card" data-value="reparatur">
-                            <i class="fas fa-tools"></i>
-                            <h4>Reparatur</h4>
-                            <p>Etwas ist kaputt</p>
-                        </div>
-                        <div class="wizard-card" data-value="neuinstallation">
-                            <i class="fas fa-hammer"></i>
-                            <h4>Neuinstallation</h4>
-                            <p>Neues System gewünscht</p>
-                        </div>
-                        <div class="wizard-card" data-value="wartung">
-                            <i class="fas fa-clipboard-check"></i>
-                            <h4>Wartung</h4>
-                            <p>Regelmäßige Pflege</p>
-                        </div>
-                        <div class="wizard-card" data-value="notfall">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h4>Notfall</h4>
-                            <p>Sofortige Hilfe nötig</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2: Urgency -->
-                <div class="wizard-step" data-step="2">
-                    <h3 class="wizard-title">Wie eilig ist es?</h3>
-                    <div class="wizard-cards">
-                        <div class="wizard-card" data-value="sofort">
-                            <i class="fas fa-bolt"></i>
-                            <h4>Sofort</h4>
-                            <p>Heute noch</p>
-                        </div>
-                        <div class="wizard-card" data-value="woche">
-                            <i class="fas fa-calendar-week"></i>
-                            <h4>Diese Woche</h4>
-                            <p>Innerhalb 7 Tagen</p>
-                        </div>
-                        <div class="wizard-card" data-value="zeit">
-                            <i class="fas fa-calendar-alt"></i>
-                            <h4>Hat Zeit</h4>
-                            <p>Planung möglich</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3: Contact Info -->
-                <div class="wizard-step" data-step="3">
-                    <h3 class="wizard-title">Wohin sollen wir kommen?</h3>
-                    <form class="wizard-form" id="wizardForm">
-                        <div class="form-group">
-                            <label for="name">Ihr Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefonnummer</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Adresse</label>
-                            <input type="text" id="address" name="address" placeholder="Straße, Hausnummer" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zip">PLZ / Ort</label>
-                            <input type="text" id="zip" name="zip" placeholder="10115 Berlin" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Wunschtermin</label>
-                            <input type="date" id="date" name="date">
-                        </div>
-                        <div class="form-group">
-                            <label for="time">Uhrzeit</label>
-                            <input type="time" id="time" name="time">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Ihre Nachricht (optional)</label>
-                            <textarea id="message" name="message" rows="4"></textarea>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Navigation -->
-                <div class="wizard-nav">
-                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">
-                        <i class="fas fa-arrow-left"></i>
-                        Zurück
-                    </button>
-                    <button type="button" class="btn btn-primary" id="nextBtn" disabled>
-                        Weiter
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Partners Section -->
     <section class="partners" id="partner">

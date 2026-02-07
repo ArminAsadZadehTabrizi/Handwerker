@@ -366,6 +366,172 @@ if (filterButtons.length > 0 && galleryItems.length > 0) {
 }
 
 // ========================================
+// LIGHTBOX MODAL FUNCTIONALITY
+// ========================================
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+// Lightbox state
+let currentLightboxData = {
+    beforeSrc: '',
+    afterSrc: '',
+    caption: '',
+    showingBefore: true
+};
+
+if (lightbox && galleryItems.length > 0) {
+    // Add click listeners to all gallery items
+    galleryItems.forEach(item => {
+        item.style.cursor = 'pointer';
+
+        item.addEventListener('click', function () {
+            // Extract image sources and caption
+            const beforeImg = this.querySelector('.before img');
+            const afterImg = this.querySelector('.after img');
+            const captionEl = this.querySelector('.gallery-caption');
+
+            if (beforeImg && afterImg && captionEl) {
+                currentLightboxData = {
+                    beforeSrc: beforeImg.src,
+                    afterSrc: afterImg.src,
+                    caption: captionEl.textContent,
+                    showingBefore: true
+                };
+
+                openLightbox();
+            }
+        });
+    });
+
+    // Close button
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    // Navigation buttons
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', showBeforeImage);
+    }
+
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', showAfterImage);
+    }
+
+    // Close lightbox on overlay click
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            showBeforeImage();
+        } else if (e.key === 'ArrowRight') {
+            showAfterImage();
+        }
+    });
+
+    // Touch swipe detection for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightbox.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Minimum distance for a swipe
+
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swiped left - show after image
+            showAfterImage();
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+            // Swiped right - show before image
+            showBeforeImage();
+        }
+    }
+
+    function openLightbox() {
+        // Show before image first
+        lightboxImage.src = currentLightboxData.beforeSrc;
+        lightboxImage.alt = 'Projekt Vorher';
+        lightboxCaption.textContent = currentLightboxData.caption + ' - Vorher';
+
+        // Update button states
+        updateNavigationButtons();
+
+        // Show lightbox
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    function showBeforeImage() {
+        if (!currentLightboxData.showingBefore) {
+            currentLightboxData.showingBefore = true;
+            lightboxImage.src = currentLightboxData.beforeSrc;
+            lightboxImage.alt = 'Projekt Vorher';
+            lightboxCaption.textContent = currentLightboxData.caption + ' - Vorher';
+            updateNavigationButtons();
+        }
+    }
+
+    function showAfterImage() {
+        if (currentLightboxData.showingBefore) {
+            currentLightboxData.showingBefore = false;
+            lightboxImage.src = currentLightboxData.afterSrc;
+            lightboxImage.alt = 'Projekt Nachher';
+            lightboxCaption.textContent = currentLightboxData.caption + ' - Nachher';
+            updateNavigationButtons();
+        }
+    }
+
+    function updateNavigationButtons() {
+        if (currentLightboxData.showingBefore) {
+            // On before image - disable prev, enable next
+            if (lightboxPrev) {
+                lightboxPrev.style.opacity = '0.5';
+                lightboxPrev.style.cursor = 'not-allowed';
+            }
+            if (lightboxNext) {
+                lightboxNext.style.opacity = '1';
+                lightboxNext.style.cursor = 'pointer';
+            }
+        } else {
+            // On after image - enable prev, disable next
+            if (lightboxPrev) {
+                lightboxPrev.style.opacity = '1';
+                lightboxPrev.style.cursor = 'pointer';
+            }
+            if (lightboxNext) {
+                lightboxNext.style.opacity = '0.5';
+                lightboxNext.style.cursor = 'not-allowed';
+            }
+        }
+    }
+}
+
+
+// ========================================
 // INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {

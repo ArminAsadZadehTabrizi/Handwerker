@@ -1,4 +1,65 @@
 // ========================================
+// MOBILE HAMBURGER MENU
+// ========================================
+const hamburger = document.getElementById('hamburger');
+const nav = document.getElementById('nav');
+
+if (hamburger && nav) {
+    // Create backdrop element
+    const backdrop = document.createElement('div');
+    backdrop.classList.add('nav-backdrop');
+    document.body.appendChild(backdrop);
+
+    function openMenu() {
+        hamburger.classList.add('active');
+        nav.classList.add('open');
+        backdrop.classList.add('visible');
+        document.body.classList.add('nav-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        hamburger.setAttribute('aria-label', 'Menü schließen');
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        nav.classList.remove('open');
+        backdrop.classList.remove('visible');
+        document.body.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Menü öffnen');
+    }
+
+    hamburger.addEventListener('click', () => {
+        if (nav.classList.contains('open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    // Close when clicking backdrop
+    backdrop.addEventListener('click', closeMenu);
+
+    // Close when clicking a nav link (for same-page anchors)
+    nav.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && nav.classList.contains('open')) {
+            closeMenu();
+        }
+    });
+}
+
+// ========================================
 // STICKY HEADER ON SCROLL
 // ========================================
 const header = document.getElementById('header');
